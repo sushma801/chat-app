@@ -1,5 +1,7 @@
 import { useFormik } from "formik";
 import React from "react";
+import { Link } from "react-router-dom";
+import useSignup from "../Hooks/useSignup";
 
 const genders = [
   { value: "female", label: "Female" },
@@ -8,18 +10,20 @@ const genders = [
 ];
 
 const Signup = () => {
+  const { loading, signup } = useSignup();
   const initialValues = {
-    username: "",
-    fullname: "",
-    gender: "Male",
+    userName: "",
+    fullName: "",
+    gender: "",
     password: "",
-    cnfPassword: "",
+    confirmPassword: "",
   };
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log(values);
+      await signup(values);
     },
   });
 
@@ -33,7 +37,7 @@ const Signup = () => {
           <div>
             <label
               className="label p-2 text-base label-text"
-              htmlFor="username"
+              htmlFor="userName"
             >
               {" "}
               Username
@@ -41,18 +45,18 @@ const Signup = () => {
             <input
               autoComplete="username"
               type="text"
-              name="username"
-              id="username"
+              name="userName"
+              id="userName"
               className="w-full input input-bordered h-10"
               placeholder="Enter Username"
               onChange={formik.handleChange}
-              value={formik.values.username}
+              value={formik.values.userName}
             />
           </div>
           <div>
             <label
               className="label p-2 text-base label-text"
-              htmlFor="fullname"
+              htmlFor="fullName"
             >
               {" "}
               Full-Name
@@ -60,12 +64,12 @@ const Signup = () => {
             <input
               autoComplete="full-name"
               type="text"
-              name="fullname"
-              id="fullname"
+              name="fullName"
+              id="fullName"
               className="w-full input input-bordered h-10"
               placeholder="Enter Full name"
               onChange={formik.handleChange}
-              value={formik.values.fullname}
+              value={formik.values.fullName}
             />
           </div>
 
@@ -84,7 +88,7 @@ const Signup = () => {
                       id="gender"
                       className="radio border-slate-800"
                       onChange={formik.handleChange}
-                      value={formik.values.genders}
+                      value={gender.value}
                     />
                   </label>
                 </div>
@@ -114,28 +118,28 @@ const Signup = () => {
           <div>
             <label
               className="label p-2 text-base label-text"
-              htmlFor="cnfPassword"
+              htmlFor="confirmPassword"
             >
               {" "}
               Confirm Password
             </label>
             <input
               autoComplete="off"
-              name="cnfPassword"
-              id="cnfPassword"
+              name="confirmPassword"
+              id="confirmPassword"
               type="text"
               className="w-full input input-bordered h-10"
               placeholder="Enter Confirm Password"
               onChange={formik.handleChange}
-              value={formik.values.cnfPassword}
+              value={formik.values.confirmPassword}
             />
           </div>
-          <a
-            href="#"
+          <Link
+            to="/login"
             className="text-sm hover:underline hover:text-blue-800 mt-2 inline-block p-2"
           >
             Already have an account?
-          </a>
+          </Link>
 
           <div>
             <button className="btn btn-block btn-sm mt-2" type="submit">
