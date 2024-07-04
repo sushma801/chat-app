@@ -34,6 +34,7 @@ export const signup = async (req, res) => {
         _id: newUser._id,
         fullName: newUser.fullName,
         userName: newUser.userName,
+        profilePic: newUser.profilePic,
       });
     } else {
       res.status(400).json({ message: "Invalid user" });
@@ -61,6 +62,7 @@ export const login = async (req, res) => {
       _id: user._id,
       fullName: user.fullName,
       userName: user.userName,
+      profilePic: user.profilePic,
     });
   } catch (e) {
     console.log("Error while login the user");
