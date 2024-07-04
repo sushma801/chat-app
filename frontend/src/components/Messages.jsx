@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import useGetMessages from "../Hooks/useGetMessages";
+import useListenMessages from "../Hooks/useListenMessages";
 
 const MessageSkelaton = () => {
   return (
@@ -15,13 +16,15 @@ const MessageSkelaton = () => {
 
 const Messages = () => {
   const { messages, loading } = useGetMessages();
-  const lastMessageRef = useRef(null);
+  useListenMessages();
+  const lastMessageRef = useRef();
 
   useEffect(() => {
+    console.log(lastMessageRef, "lastMessageRef");
     setTimeout(() => {
-      lastMessageRef.current?.scrollIntoView({ behaviour: "smooth" });
+      lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
-  }, []);
+  }, [messages]);
 
   return (
     <div className="px-4 flex-1 overflow-auto">
