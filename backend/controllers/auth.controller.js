@@ -6,7 +6,7 @@ export const signup = async (req, res) => {
   try {
     const { fullName, userName, password, confirmPassword, gender } = req.body;
     if (password !== confirmPassword)
-      return res.status(400).json({ erroe: "Password is wrong" });
+      return res.status(400).json({ error: "Password is wrong" });
 
     const user = await User.findOne({ userName });
     if (user) return res.status(400).json({ error: "User is already exists" });
