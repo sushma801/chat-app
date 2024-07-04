@@ -13,7 +13,6 @@ const useListenMessages = () => {
       const sound = new Audio(notificationSound);
       sound.play();
       setMessages([...messages, newMessage]);
-      console.log("inside the useEffect");
     });
     return () => socket?.off("newMessage");
   }, [setMessages, messages, socket]);

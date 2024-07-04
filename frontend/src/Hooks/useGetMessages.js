@@ -16,7 +16,6 @@ const useGetMessages = () => {
           { headers }
         );
         if (res.data.Error) throw new Error(res.data.Error);
-        console.log(res.data);
         setMessages(res.data);
       } catch (e) {
         throw new Error(e.messages);

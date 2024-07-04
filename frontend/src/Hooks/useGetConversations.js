@@ -11,7 +11,6 @@ const useGetConversations = () => {
       try {
         const res = await axios.get("/api/users");
         if (res.data.error) throw new Error(res.data.error);
-        console.log(res);
         setConversations(res.data);
       } catch (e) {
         console.log("error while loading the users");

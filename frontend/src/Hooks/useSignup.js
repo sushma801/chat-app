@@ -36,7 +36,6 @@ const useSignup = () => {
       //   headers,
       //   body: JSON.stringify(userData),
       // });
-      console.log(res.data);
 
       if (res.data.error) {
         throw new Error(res.data.error);

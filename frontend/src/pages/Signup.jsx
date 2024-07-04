@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 import useSignup from "../Hooks/useSignup";
+import * as yup from "yup";
 
 const genders = [
   { value: "female", label: "Female" },
@@ -11,6 +12,32 @@ const genders = [
 
 const Signup = () => {
   const { loading, signup } = useSignup();
+  const validationSchema = yup.object({
+    userName: yup
+      .string()
+      .required("Required username")
+      .min(3, "Too! short username")
+      .max(30, "Too! long username"),
+    fullName: yup
+      .string()
+      .required("Required")
+      .min(2, "Too! short full name")
+      .max(30, "Too! long full name"),
+    gender: yup.string().required("Required genders"),
+    password: yup
+      .string()
+      .required("Required Password")
+      .min(6, "Password is too short")
+      .max(30, "Password is too long")
+      .matches(
+        /[!@#$%^&*(),.?":{}|<>]/,
+        "Password must contain at least one special character"
+      ),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Passwords must match")
+      .required("Required"),
+  });
   const initialValues = {
     userName: "",
     fullName: "",
@@ -21,6 +48,7 @@ const Signup = () => {
 
   const formik = useFormik({
     initialValues,
+    validationSchema,
     onSubmit: async (values) => {
       console.log(values);
       await signup(values);
@@ -52,6 +80,13 @@ const Signup = () => {
               onChange={formik.handleChange}
               value={formik.values.userName}
             />
+            {formik.touched.userName && formik.errors.userName ? (
+              <div>
+                <span className="text-red-800 font-semibold p-2">
+                  {formik.errors.userName}
+                </span>
+              </div>
+            ) : null}
           </div>
           <div>
             <label
@@ -71,29 +106,45 @@ const Signup = () => {
               onChange={formik.handleChange}
               value={formik.values.fullName}
             />
+            {formik.touched.fullName && formik.errors.fullName ? (
+              <div>
+                <span className="text-red-800 font-semibold p-2">
+                  {formik.errors.fullName}
+                </span>
+              </div>
+            ) : null}
           </div>
 
-          <div className="flex mt-2 ">
-            {genders.map((gender) => {
-              return (
-                <div className="form-control" key={gender.value}>
-                  <label
-                    className="label gap-2 cursor-pointer"
-                    htmlFor="gender"
-                  >
-                    <span className="label-text">{gender.label}</span>
-                    <input
-                      type="radio"
-                      name="gender"
-                      id="gender"
-                      className="radio border-slate-800"
-                      onChange={formik.handleChange}
-                      value={gender.value}
-                    />
-                  </label>
-                </div>
-              );
-            })}
+          <div className="flex flex-col ">
+            <div className="flex  p-2">
+              {genders.map((gender) => {
+                return (
+                  <div className="form-control" key={gender.value}>
+                    <label
+                      className="label gap-2 cursor-pointer"
+                      htmlFor="gender"
+                    >
+                      <span className="label-text">{gender.label}</span>
+                      <input
+                        type="radio"
+                        name="gender"
+                        id={`gender ${gender.value}`}
+                        className="radio border-slate-800"
+                        onChange={formik.handleChange}
+                        value={gender.value}
+                      />
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+            {formik.touched.gender && formik.errors.gender ? (
+              <div>
+                <span className="text-red-800 font-semibold p-2">
+                  {formik.errors.gender}
+                </span>
+              </div>
+            ) : null}
           </div>
 
           <div>
@@ -114,6 +165,13 @@ const Signup = () => {
               onChange={formik.handleChange}
               value={formik.values.password}
             />
+            {formik.touched.password && formik.errors.password ? (
+              <div>
+                <span className="text-red-800 font-semibold p-2">
+                  {formik.errors.password}
+                </span>
+              </div>
+            ) : null}
           </div>
           <div>
             <label
@@ -133,6 +191,13 @@ const Signup = () => {
               onChange={formik.handleChange}
               value={formik.values.confirmPassword}
             />
+            {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+              <div>
+                <span className="text-red-800 font-semibold p-2">
+                  {formik.errors.confirmPassword}
+                </span>
+              </div>
+            ) : null}
           </div>
           <Link
             to="/login"
