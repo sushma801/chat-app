@@ -1,11 +1,17 @@
 # chat-app
 link to access the app: https://chat-app-0tol.onrender.com/
+
 Description about the app:
 Our chat application is a robust and scalable platform designed to facilitate real-time communication. Utilizing modern web technologies, the app provides a seamless and responsive user experience
+
+
 ############################################################################
 Features
+
 Real-Time Messaging: Instant message delivery.
+
 User Authentication: Secure login and registration using JWT (JSON Web Tokens).
+
 Notifications: Real-time notifications to keep users informed of new messages and updates.
 Search Functionality: Quickly find past conversations and messages.
 #############################################################################
