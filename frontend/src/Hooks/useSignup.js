@@ -1,24 +1,15 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useAuthContext } from "../context/AuthContext";
+import axios from 'axios';
+import { useState } from 'react';
+import { useAuthContext } from '../context/AuthContext';
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
-  const signup = async ({
-    fullName,
-    userName,
-    password,
-    confirmPassword,
-    gender,
-  }) => {
-    console.log(
-      { fullName, userName, password, confirmPassword, gender },
-      " from sign up hook"
-    );
+  const signup = async ({ fullName, userName, password, confirmPassword, gender }) => {
+    console.log({ fullName, userName, password, confirmPassword, gender }, ' from sign up hook');
     setLoading(true);
     try {
-      const headers = { "Content-Type": "application/json" };
+      const headers = { 'Content-Type': 'application/json' };
       const userData = {
         fullName,
         userName,
@@ -26,11 +17,7 @@ const useSignup = () => {
         confirmPassword,
         gender,
       };
-      const res = await axios.post(
-        "/api/auth/signup",
-        JSON.stringify(userData),
-        { headers }
-      );
+      const res = await axios.post('/api/auth/signup', JSON.stringify(userData), { headers });
       // const res = await fetch("/api/auth/signup", {
       //   method: "POST",
       //   headers,
@@ -41,10 +28,10 @@ const useSignup = () => {
         throw new Error(res.data.error);
       }
       // store the value to the local storage
-      localStorage.setItem("authUser", JSON.stringify(res.data));
+      localStorage.setItem('authUser', JSON.stringify(res.data));
       setAuthUser(res.data);
     } catch (e) {
-      console.log("error");
+      console.log('error');
     } finally {
       setLoading(false);
     }

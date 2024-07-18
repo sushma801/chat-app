@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useConversation } from "../zustant/useConversation";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { useConversation } from '../zustant/useConversation';
+import axios from 'axios';
 
 const useGetMessages = () => {
   const [loading, setLoading] = useState(false);
@@ -9,12 +9,8 @@ const useGetMessages = () => {
     const getMessages = async () => {
       setLoading(true);
       try {
-        const headers = { "Content-Type": "application/json" };
-        const res = await axios.post(
-          `/api/messages/${selectedConversation._id}`,
-          {},
-          { headers }
-        );
+        const headers = { 'Content-Type': 'application/json' };
+        const res = await axios.post(`/api/messages/${selectedConversation._id}`, {}, { headers });
         if (res.data.Error) throw new Error(res.data.Error);
         setMessages(res.data);
       } catch (e) {

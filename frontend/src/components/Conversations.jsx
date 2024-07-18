@@ -1,6 +1,6 @@
-import React from "react";
-import Conversation from "./Conversation";
-import useGetConversations from "../Hooks/useGetConversations";
+import React from 'react';
+import Conversation from './Conversation';
+import useGetConversations from '../Hooks/useGetConversations';
 
 const Conversations = () => {
   const { loading, conversations } = useGetConversations();
@@ -13,9 +13,7 @@ const Conversations = () => {
           lastIdx={idx === conversations.length - 1}
         />
       ))}
-      {loading ? (
-        <span className="loading loading-spinner mx-auto"></span>
-      ) : null}
+      {loading ? <span className="loading loading-spinner mx-auto"></span> : null}
     </div>
   );
 };

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { BsSend } from "react-icons/bs";
-import useSendMessage from "../Hooks/useSendMessage";
+import React, { useState } from 'react';
+import { BsSend } from 'react-icons/bs';
+import useSendMessage from '../Hooks/useSendMessage';
 
 const MessageInput = () => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const { loading, sendMessage } = useSendMessage();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!message) return;
     await sendMessage(message);
-    setMessage("");
+    setMessage('');
   };
   return (
     <form className="px-4 my-3" onSubmit={handleSubmit}>
@@ -22,10 +22,7 @@ const MessageInput = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button
-          type="submit"
-          className="absolute inset-y-0 end-0 flex item-center p-2"
-        >
+        <button type="submit" className="absolute inset-y-0 end-0 flex item-center p-2">
           <BsSend className="h-6 w-6 " />
         </button>
       </div>

@@ -1,6 +1,6 @@
-import React from "react";
-import { useConversation } from "../zustant/useConversation";
-import { useSocketContext } from "../context/SocketContext";
+import React from 'react';
+import { useConversation } from '../zustant/useConversation';
+import { useSocketContext } from '../context/SocketContext';
 
 const Conversation = ({ conversation, lastIdx }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
@@ -12,11 +12,11 @@ const Conversation = ({ conversation, lastIdx }) => {
     <>
       <div
         className={`flex gap-2 items-center hover:bg-sky-400 rounded p-2 py-1 cursor-pointer ${
-          isSelected ? "bg-sky-400" : ""
+          isSelected ? 'bg-sky-400' : ''
         }`}
         onClick={() => setSelectedConversation(conversation)}
       >
-        <div className={`avatar ${isOnline ? "online" : "offline"}`}>
+        <div className={`avatar ${isOnline ? 'online' : 'offline'}`}>
           <div className="w-12 rounded-full">
             <img src={conversation.profilePic} alt="user avatar" />
           </div>

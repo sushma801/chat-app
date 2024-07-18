@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import Message from "./Message";
-import useGetMessages from "../Hooks/useGetMessages";
-import useListenMessages from "../Hooks/useListenMessages";
+import React, { useEffect, useRef } from 'react';
+import Message from './Message';
+import useGetMessages from '../Hooks/useGetMessages';
+import useListenMessages from '../Hooks/useListenMessages';
 
 const MessageSkelaton = () => {
   return (
@@ -21,7 +21,7 @@ const Messages = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+      lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
   }, [messages]);
 

@@ -5,5 +5,5 @@ export const extractTime = (date) => {
   return `${hours}:${minutes}`;
 };
 const padZero = (number) => {
-  return number.toString().padStart(2, "0");
+  return number.toString().padStart(2, '0');
 };

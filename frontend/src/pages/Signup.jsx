@@ -1,13 +1,13 @@
-import { useFormik } from "formik";
-import React from "react";
-import { Link } from "react-router-dom";
-import useSignup from "../Hooks/useSignup";
-import * as yup from "yup";
+import { useFormik } from 'formik';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import useSignup from '../Hooks/useSignup';
+import * as yup from 'yup';
 
 const genders = [
-  { value: "female", label: "Female" },
-  { value: "male", label: "Male" },
-  { value: "other", label: "Other" },
+  { value: 'female', label: 'Female' },
+  { value: 'male', label: 'Male' },
+  { value: 'other', label: 'Other' },
 ];
 
 const Signup = () => {
@@ -15,35 +15,32 @@ const Signup = () => {
   const validationSchema = yup.object({
     userName: yup
       .string()
-      .required("Required username")
-      .min(3, "Too! short username")
-      .max(30, "Too! long username"),
+      .required('Required username')
+      .min(3, 'Too! short username')
+      .max(30, 'Too! long username'),
     fullName: yup
       .string()
-      .required("Required")
-      .min(2, "Too! short full name")
-      .max(30, "Too! long full name"),
-    gender: yup.string().required("Required genders"),
+      .required('Required')
+      .min(2, 'Too! short full name')
+      .max(30, 'Too! long full name'),
+    gender: yup.string().required('Required genders'),
     password: yup
       .string()
-      .required("Required Password")
-      .min(6, "Password is too short")
-      .max(30, "Password is too long")
-      .matches(
-        /[!@#$%^&*(),.?":{}|<>]/,
-        "Password must contain at least one special character"
-      ),
+      .required('Required Password')
+      .min(6, 'Password is too short')
+      .max(30, 'Password is too long')
+      .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Password must contain at least one special character'),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref("password"), null], "Passwords must match")
-      .required("Required"),
+      .oneOf([yup.ref('password'), null], 'Passwords must match')
+      .required('Required'),
   });
   const initialValues = {
-    userName: "",
-    fullName: "",
-    gender: "",
-    password: "",
-    confirmPassword: "",
+    userName: '',
+    fullName: '',
+    gender: '',
+    password: '',
+    confirmPassword: '',
   };
 
   const formik = useFormik({
@@ -58,16 +55,11 @@ const Signup = () => {
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-4 rounded-lg shadow-md  bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
-        <h1 className="text-2xl font-semibold text-center text-gray-200">
-          SignUp ChatApp
-        </h1>
+        <h1 className="text-2xl font-semibold text-center text-gray-200">SignUp ChatApp</h1>
         <form onSubmit={formik.handleSubmit}>
           <div>
-            <label
-              className="label p-2 text-base label-text"
-              htmlFor="userName"
-            >
-              {" "}
+            <label className="label p-2 text-base label-text" htmlFor="userName">
+              {' '}
               Username
             </label>
             <input
@@ -82,18 +74,13 @@ const Signup = () => {
             />
             {formik.touched.userName && formik.errors.userName ? (
               <div>
-                <span className="text-red-800 font-semibold p-2">
-                  {formik.errors.userName}
-                </span>
+                <span className="text-red-800 font-semibold p-2">{formik.errors.userName}</span>
               </div>
             ) : null}
           </div>
           <div>
-            <label
-              className="label p-2 text-base label-text"
-              htmlFor="fullName"
-            >
-              {" "}
+            <label className="label p-2 text-base label-text" htmlFor="fullName">
+              {' '}
               Full-Name
             </label>
             <input
@@ -108,9 +95,7 @@ const Signup = () => {
             />
             {formik.touched.fullName && formik.errors.fullName ? (
               <div>
-                <span className="text-red-800 font-semibold p-2">
-                  {formik.errors.fullName}
-                </span>
+                <span className="text-red-800 font-semibold p-2">{formik.errors.fullName}</span>
               </div>
             ) : null}
           </div>
@@ -120,10 +105,7 @@ const Signup = () => {
               {genders.map((gender) => {
                 return (
                   <div className="form-control" key={gender.value}>
-                    <label
-                      className="label gap-2 cursor-pointer"
-                      htmlFor="gender"
-                    >
+                    <label className="label gap-2 cursor-pointer" htmlFor="gender">
                       <span className="label-text">{gender.label}</span>
                       <input
                         type="radio"
@@ -140,19 +122,14 @@ const Signup = () => {
             </div>
             {formik.touched.gender && formik.errors.gender ? (
               <div>
-                <span className="text-red-800 font-semibold p-2">
-                  {formik.errors.gender}
-                </span>
+                <span className="text-red-800 font-semibold p-2">{formik.errors.gender}</span>
               </div>
             ) : null}
           </div>
 
           <div>
-            <label
-              className="label p-2 text-base label-text"
-              htmlFor="password"
-            >
-              {" "}
+            <label className="label p-2 text-base label-text" htmlFor="password">
+              {' '}
               Password
             </label>
             <input
@@ -167,18 +144,13 @@ const Signup = () => {
             />
             {formik.touched.password && formik.errors.password ? (
               <div>
-                <span className="text-red-800 font-semibold p-2">
-                  {formik.errors.password}
-                </span>
+                <span className="text-red-800 font-semibold p-2">{formik.errors.password}</span>
               </div>
             ) : null}
           </div>
           <div>
-            <label
-              className="label p-2 text-base label-text"
-              htmlFor="confirmPassword"
-            >
-              {" "}
+            <label className="label p-2 text-base label-text" htmlFor="confirmPassword">
+              {' '}
               Confirm Password
             </label>
             <input

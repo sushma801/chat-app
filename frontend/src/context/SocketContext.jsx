@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useAuthContext } from "./AuthContext";
-import io from "socket.io-client";
+import { createContext, useContext, useEffect, useState } from 'react';
+import { useAuthContext } from './AuthContext';
+import io from 'socket.io-client';
 
 export const SocketContext = createContext();
 
@@ -15,13 +15,13 @@ export const SocketContextProvider = ({ children }) => {
   const { authUser } = useAuthContext();
   useEffect(() => {
     if (authUser) {
-      const socket = io("https://chat-app-0tol.onrender.com", {
+      const socket = io('https://chat-app-0tol.onrender.com', {
         query: {
           userId: authUser._id,
         },
       });
       setSocket(socket);
-      socket.on("getOnlineUsers", (users) => {
+      socket.on('getOnlineUsers', (users) => {
         setOnlineUsers(users);
       });
       return () => socket.close();
@@ -33,8 +33,6 @@ export const SocketContextProvider = ({ children }) => {
     }
   }, [authUser]);
   return (
-    <SocketContext.Provider value={{ socket, onlineUsers }}>
-      {children}
-    </SocketContext.Provider>
+    <SocketContext.Provider value={{ socket, onlineUsers }}>{children}</SocketContext.Provider>
   );
 };

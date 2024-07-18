@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const useGetConversations = () => {
   const [loading, setLoading] = useState(false);
@@ -9,11 +9,11 @@ const useGetConversations = () => {
     const getConversations = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("/api/users");
+        const res = await axios.get('/api/users');
         if (res.data.error) throw new Error(res.data.error);
         setConversations(res.data);
       } catch (e) {
-        console.log("error while loading the users");
+        console.log('error while loading the users');
       } finally {
         setLoading(false);
       }

@@ -1,19 +1,17 @@
-import React from "react";
-import { useAuthContext } from "../context/AuthContext";
-import { useConversation } from "../zustant/useConversation";
-import { extractTime } from "../utils/extractTime";
+import React from 'react';
+import { useAuthContext } from '../context/AuthContext';
+import { useConversation } from '../zustant/useConversation';
+import { extractTime } from '../utils/extractTime';
 
 const Message = ({ message }) => {
   const { authUser } = useAuthContext();
   const { selectedConversation } = useConversation();
   // eslint-disable-next-line react/prop-types
   const fromMe = message.senderId === authUser._id;
-  const chatClassName = fromMe ? "chat-end" : "chat-start";
-  const profilePic = fromMe
-    ? authUser.profilePic
-    : selectedConversation?.profilePic;
-  const bubbleBgColor = fromMe ? "bg-blue-500" : "";
-  const shakeClass = message.shouldShake ? "shake" : "";
+  const chatClassName = fromMe ? 'chat-end' : 'chat-start';
+  const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
+  const bubbleBgColor = fromMe ? 'bg-blue-500' : '';
+  const shakeClass = message.shouldShake ? 'shake' : '';
   const formattedTime = extractTime(message.createdAt);
   return (
     <div className={`chat ${chatClassName} `}>
