@@ -12,4 +12,24 @@ export default defineConfig({
       },
     },
   },
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./setup.js",
+    coverage: {
+      provider: "c8",
+      reporter: ["text", "html", "lcov"],
+      all: true, // Include all files, not just the ones tested
+      include: ["src/**/*.{js,jsx}"], // Files to include in coverage
+      exclude: ["node_modules"],
+    },
+    include: ["**/*.{test,spec}.?(c|m)[jt]s?(x)"],
+    exclude: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/cypress/**",
+      "**/.{idea,git,cache,output,temp}/**",
+      "**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*",
+    ],
+  },
 });
