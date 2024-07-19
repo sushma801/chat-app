@@ -6,8 +6,10 @@
   "scripts": {
     "server": "nodemon backend/server.js",
     "start": "node backend/server.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
-
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "prepare": "husky install",
+    "lint:frontend": "npm --prefix frontend run lint",
+    "lint": "npm run lint:frontend"
   },
   "type": "module",
   "keywords": [],
@@ -23,6 +25,9 @@
     "socket.io": "^4.7.5"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "husky": "^8.0.0",
     "nodemon": "^3.1.4"
   }
 }
