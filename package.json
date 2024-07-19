@@ -9,7 +9,10 @@
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
     "prepare": "husky install",
     "lint:frontend": "npm --prefix frontend run lint",
-    "lint": "npm run lint:frontend"
+    "format:frontend": "npm --prefix frontend run format",
+    "format:backend": "prettier --write \"backend/**/*.{js,jsx}\"",
+    "lint": "npm run lint:frontend",
+    "format": "npm run format:backend && npm run format:frontend"
   },
   "type": "module",
   "keywords": [],
@@ -22,11 +25,15 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.4",
+    "prettier": "^3.3.3",
     "socket.io": "^4.7.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "@eslint/js": "^9.7.0",
+    "eslint": "^9.7.0",
+    "globals": "^15.8.0",
     "husky": "^8.0.0",
     "nodemon": "^3.1.4"
   }

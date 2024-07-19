@@ -1,4 +1,5 @@
 # chat-app
+
 link to access the app: https://chat-app-0tol.onrender.com/
 
 Description about the app:
@@ -38,4 +39,3 @@ MongoDB: A NoSQL database for storing user data, messages, and chat histories, o
 Socket.io: For real-time event-based communication.
 
 JWT: For secure user authentication
-

@@ -1,6 +1,6 @@
-import Conversation from "../models/conversation.model.js";
-import Message from "../models/message.model.js";
-import { getReceiverSocketId, io } from "../socket/socket.js";
+import Conversation from '../models/conversation.model.js';
+import Message from '../models/message.model.js';
+import { getReceiverSocketId, io } from '../socket/socket.js';
 
 export const handleSendMessage = async (req, res) => {
   try {
@@ -30,15 +30,15 @@ export const handleSendMessage = async (req, res) => {
     // socket io functionality
 
     const receiverSocketId = getReceiverSocketId(receiverId);
-    console.log(receiverId, "receiverId");
+    console.log(receiverId, 'receiverId');
     if (receiverSocketId) {
-      io.to(receiverSocketId).emit("newMessage", newMessage);
+      io.to(receiverSocketId).emit('newMessage', newMessage);
     }
 
     res.status(201).json(newMessage);
   } catch (error) {
-    console.log("Message was not send");
-    res.status(500).json({ error: "Internal server error" });
+    console.log('Message was not send');
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -48,7 +48,7 @@ export const handleGetMessage = async (req, res) => {
     const senderId = req.user._id;
     const conversation = await Conversation.findOne({
       participants: { $all: [senderId, userToChatId] },
-    }).populate("messages");
+    }).populate('messages');
 
     if (!conversation) return res.status(200).json([]);
 
@@ -56,7 +56,7 @@ export const handleGetMessage = async (req, res) => {
 
     res.status(200).json(messages);
   } catch (error) {
-    console.log("Error while loading messages");
-    res.status(500).json({ error: "Internal server error" });
+    console.log('Error while loading messages');
+    res.status(500).json({ error: 'Internal server error' });
   }
 };

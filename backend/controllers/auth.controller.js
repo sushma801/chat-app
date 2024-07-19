@@ -1,15 +1,14 @@
-import User from "../models/user.model.js";
-import bcyrcpt from "bcryptjs";
-import generateTokenAndSetCookie from "../utils/generateToken.js";
+import User from '../models/user.model.js';
+import bcyrcpt from 'bcryptjs';
+import generateTokenAndSetCookie from '../utils/generateToken.js';
 
 export const signup = async (req, res) => {
   try {
     const { fullName, userName, password, confirmPassword, gender } = req.body;
-    if (password !== confirmPassword)
-      return res.status(400).json({ error: "Password is wrong" });
+    if (password !== confirmPassword) return res.status(400).json({ error: 'Password is wrong' });
 
     const user = await User.findOne({ userName });
-    if (user) return res.status(400).json({ error: "User is already exists" });
+    if (user) return res.status(400).json({ error: 'User is already exists' });
     // Hasing the password
 
     const salt = await bcyrcpt.genSalt(10);
@@ -23,7 +22,7 @@ export const signup = async (req, res) => {
       userName,
       password: hashPassword,
       gender,
-      profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
+      profilePic: gender === 'male' ? boyProfilePic : girlProfilePic,
     });
 
     if (newUser) {
@@ -37,11 +36,11 @@ export const signup = async (req, res) => {
         profilePic: newUser.profilePic,
       });
     } else {
-      res.status(400).json({ message: "Invalid user" });
+      res.status(400).json({ message: 'Invalid user' });
     }
   } catch (e) {
-    console.log("Error in sign up the user");
-    res.status(500).json({ error: "Internal Server error" });
+    console.log('Error in sign up the user');
+    res.status(500).json({ error: 'Internal Server error' });
   }
 };
 
@@ -49,13 +48,10 @@ export const login = async (req, res) => {
   try {
     const { userName, password } = req.body;
     const user = await User.findOne({ userName });
-    const isPasswordCorrect = await bcyrcpt.compare(
-      password,
-      user.password || ""
-    );
+    const isPasswordCorrect = await bcyrcpt.compare(password, user.password || '');
     if (!user || !isPasswordCorrect) {
-      console.log("in if block");
-      return res.status(400).json({ error: "Invalid username or password" });
+      console.log('in if block');
+      return res.status(400).json({ error: 'Invalid username or password' });
     }
     generateTokenAndSetCookie(user._id, res);
     res.status(200).json({
@@ -65,17 +61,17 @@ export const login = async (req, res) => {
       profilePic: user.profilePic,
     });
   } catch (e) {
-    console.log("Error while login the user");
-    res.status(500).json({ error: "Internal server error" });
+    console.log('Error while login the user');
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
 export const logout = async (req, res) => {
   try {
-    res.cookie("jwt", "", { maxAge: 0 });
-    res.status(200).json({ message: "Logout the user successfully" });
+    res.cookie('jwt', '', { maxAge: 0 });
+    res.status(200).json({ message: 'Logout the user successfully' });
   } catch (e) {
-    console.log("Error while logout the user");
+    console.log('Error while logout the user');
     res.statu(500).json({ error: `Internal server error` });
   }
 };
