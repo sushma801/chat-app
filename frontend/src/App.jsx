@@ -2,7 +2,6 @@ import './App.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuthContext } from './context/AuthContext';
 import { lazy, Suspense, useState } from 'react';
-import Practice from './pages/Practice';
 
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
