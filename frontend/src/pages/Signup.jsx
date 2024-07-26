@@ -1,8 +1,9 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useSignup from '../Hooks/useSignup';
 import * as yup from 'yup';
+import { MdOutlineVisibility, MdOutlineVisibilityOff } from 'react-icons/md';
 
 const genders = [
   { value: 'female', label: 'Female' },
@@ -12,6 +13,9 @@ const genders = [
 
 const Signup = () => {
   const { loading, signup } = useSignup();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+
   const validationSchema = yup.object({
     userName: yup
       .string()
@@ -132,16 +136,24 @@ const Signup = () => {
               {' '}
               Password
             </label>
-            <input
-              autoComplete="off"
-              type="text"
-              id="password"
-              name="password"
-              className="w-full input input-bordered h-10"
-              placeholder="Enter Password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-            />
+            <div className="relative">
+              <input
+                autoComplete="off"
+                type={`${isPasswordVisible ? 'text' : 'password'}`}
+                id="password"
+                name="password"
+                className="w-full input input-bordered h-10"
+                placeholder="Enter Password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+              />
+              <button
+                className="absolute top-[12px] right-[20px] text-lg"
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              >
+                {isPasswordVisible ? <MdOutlineVisibilityOff /> : <MdOutlineVisibility />}
+              </button>
+            </div>
             {formik.touched.password && formik.errors.password ? (
               <div>
                 <span className="text-red-800 font-semibold p-2">{formik.errors.password}</span>
@@ -153,16 +165,24 @@ const Signup = () => {
               {' '}
               Confirm Password
             </label>
-            <input
-              autoComplete="off"
-              name="confirmPassword"
-              id="confirmPassword"
-              type="text"
-              className="w-full input input-bordered h-10"
-              placeholder="Enter Confirm Password"
-              onChange={formik.handleChange}
-              value={formik.values.confirmPassword}
-            />
+            <div className="relative">
+              <input
+                autoComplete="off"
+                name="confirmPassword"
+                id="confirmPassword"
+                type={`${isConfirmPasswordVisible ? 'text' : 'password'}`}
+                className="w-full input input-bordered h-10"
+                placeholder="Enter Confirm Password"
+                onChange={formik.handleChange}
+                value={formik.values.confirmPassword}
+              />
+              <button
+                className="absolute top-[12px] right-[20px] text-lg"
+                onClick={() => setIsConfirmPasswordVisible(!isConfirmPasswordVisible)}
+              >
+                {isConfirmPasswordVisible ? <MdOutlineVisibilityOff /> : <MdOutlineVisibility />}
+              </button>
+            </div>
             {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
               <div>
                 <span className="text-red-800 font-semibold p-2">

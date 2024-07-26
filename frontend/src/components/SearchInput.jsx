@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IoSearchSharp } from 'react-icons/io5';
 import { useConversation } from '../zustant/useConversation';
 import useGetConversations from '../Hooks/useGetConversations';
+import toast from 'react-hot-toast';
 
 const SearchInput = () => {
   const [search, setSearch] = useState('');
@@ -13,28 +14,30 @@ const SearchInput = () => {
     const conversation = conversations.find((c) =>
       c.fullName.toLowerCase().includes(search.toLowerCase()),
     );
-    console.log(conversation, conversations);
     if (conversation) {
       setSelectedConversation(conversation);
       setSearch('');
     } else {
-      console.log('No such user found');
+      toast.error(`No such user found with ${search}`, { duration: 1000 });
+      setSearch('');
     }
   };
 
   return (
-    <form className="flex items-center gap-2 " onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Search"
-        className="input input-bordered rounded-full"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <button type="submit" className="btn btn-circle bg-sky-400 text-white">
-        <IoSearchSharp className="w-6 h-6 outline-none" />
-      </button>
-    </form>
+    <>
+      <form className="flex items-center gap-2 " onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search"
+          className="input input-bordered rounded-full"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button type="submit" className="btn btn-circle bg-sky-400 text-white">
+          <IoSearchSharp className="w-6 h-6 outline-none" />
+        </button>
+      </form>
+    </>
   );
 };
 

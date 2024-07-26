@@ -1,12 +1,15 @@
-import React from 'react';
-import Sidebar from '../components/Sidebar';
-import MessageContainer from '../components/MessageContainer';
+import React, { lazy, Suspense } from 'react';
+
+const Sidebar = lazy(() => import('../components/Sidebar'));
+const MessageContainer = lazy(() => import('../components/MessageContainer'));
 
 const Home = () => {
   return (
     <div className="flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
-      <Sidebar />
-      <MessageContainer />
+      <Suspense fallback={<span className="loading" />}>
+        <Sidebar />
+        <MessageContainer />
+      </Suspense>
     </div>
   );
 };

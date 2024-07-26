@@ -17,9 +17,7 @@ export default defineConfig({
     globals: true,
     setupFiles: './setup.js',
     coverage: {
-      provider: 'c8',
       reporter: ['text', 'html', 'lcov'],
-      all: true, // Include all files, not just the ones tested
       include: ['src/**/*.{js,jsx}'], // Files to include in coverage
       exclude: ['node_modules'],
     },

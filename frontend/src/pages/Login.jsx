@@ -1,11 +1,13 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useLogin from '../Hooks/useLogin';
 import * as yup from 'yup';
+import { MdOutlineVisibility, MdOutlineVisibilityOff } from 'react-icons/md';
 
 const Login = () => {
   const { login } = useLogin();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const validationSchema = yup.object({
     userName: yup
       .string()
@@ -30,6 +32,10 @@ const Login = () => {
       await login(values);
     },
   });
+
+  const handlePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -61,15 +67,23 @@ const Login = () => {
               {' '}
               Password
             </label>
-            <input
-              name="password"
-              id="password"
-              type="text"
-              className="w-full input input-bordered h-10"
-              placeholder="Enter Password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-            />
+            <div className="relative">
+              <input
+                name="password"
+                id="password"
+                type={`${isPasswordVisible ? 'text' : 'password'}`}
+                className="w-full input input-bordered h-10"
+                placeholder="Enter Password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+              />
+              <button
+                onClick={handlePasswordVisibility}
+                className="absolute top-[12px] right-[20px] text-lg"
+              >
+                {isPasswordVisible ? <MdOutlineVisibilityOff /> : <MdOutlineVisibility />}
+              </button>
+            </div>
             <div>
               <span className="text-red-800 font-semibold p-2">
                 {formik.touched.password && formik.errors.password ? formik.errors.password : null}
