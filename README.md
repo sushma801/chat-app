@@ -4,7 +4,7 @@ link to access the app: https://chat-app-0tol.onrender.com/
 
 Description about the app:
 
-Our chat application is a robust and scalable platform designed to facilitate real-time communication. Utilizing modern web technologies, the app provides a seamless and responsive user experience
+Our chat application is a robust and scalable platform designed to facilitate real-time communication. Utilizing modern web technologies, the app provides a seamless and responsive user experience for large screen
 
 ############################################################################
 
