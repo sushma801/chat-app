@@ -3,8 +3,8 @@ import { it, describe } from 'vitest';
 import Home from './Home';
 
 describe('Home Page', () => {
-  it('Render Home Page', () => {
-    const { container } = render(<Home />);
+  it('Render Home Page', async () => {
+    const { container } = await render(<Home />);
     screen.debug(container);
   });
 });
