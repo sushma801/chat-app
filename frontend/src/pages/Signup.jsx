@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useSignup from '../Hooks/useSignup';
 import * as yup from 'yup';
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from 'react-icons/md';
@@ -15,6 +15,7 @@ const Signup = () => {
   const { loading, signup } = useSignup();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const navigate = useNavigate();
 
   const validationSchema = yup.object({
     userName: yup
@@ -62,7 +63,7 @@ const Signup = () => {
         <h1 className="text-2xl font-semibold text-center text-gray-200">SignUp ChatApp</h1>
         <form onSubmit={formik.handleSubmit}>
           <div>
-            <label className="label p-2 text-base label-text" htmlFor="userName">
+            <label className="label p-2 text-base label-text text-slate-100" htmlFor="userName">
               {' '}
               Username
             </label>
@@ -71,7 +72,7 @@ const Signup = () => {
               type="text"
               name="userName"
               id="userName"
-              className="w-full input input-bordered h-10"
+              className="w-full input input-bordered h-10 bg-slate-100"
               placeholder="Enter Username"
               onChange={formik.handleChange}
               value={formik.values.userName}
@@ -83,7 +84,7 @@ const Signup = () => {
             ) : null}
           </div>
           <div>
-            <label className="label p-2 text-base label-text" htmlFor="fullName">
+            <label className="label p-2 text-base label-text text-slate-100" htmlFor="fullName">
               {' '}
               Full-Name
             </label>
@@ -92,7 +93,7 @@ const Signup = () => {
               type="text"
               name="fullName"
               id="fullName"
-              className="w-full input input-bordered h-10"
+              className="w-full input input-bordered h-10  bg-slate-100"
               placeholder="Enter Full name"
               onChange={formik.handleChange}
               value={formik.values.fullName}
@@ -105,17 +106,17 @@ const Signup = () => {
           </div>
 
           <div className="flex flex-col ">
-            <div className="flex  p-2">
+            <div className="flex  py-2">
               {genders.map((gender) => {
                 return (
                   <div className="form-control" key={gender.value}>
                     <label className="label gap-2 cursor-pointer" htmlFor="gender">
-                      <span className="label-text">{gender.label}</span>
+                      <span className="label-text text-slate-100">{gender.label}</span>
                       <input
                         type="radio"
                         name="gender"
                         id={`gender ${gender.value}`}
-                        className="radio border-slate-800"
+                        className="radio border-slate-100"
                         onChange={formik.handleChange}
                         value={gender.value}
                       />
@@ -132,7 +133,7 @@ const Signup = () => {
           </div>
 
           <div>
-            <label className="label p-2 text-base label-text" htmlFor="password">
+            <label className="label p-2 text-base label-text text-slate-100" htmlFor="password">
               {' '}
               Password
             </label>
@@ -142,7 +143,7 @@ const Signup = () => {
                 type={`${isPasswordVisible ? 'text' : 'password'}`}
                 id="password"
                 name="password"
-                className="w-full input input-bordered h-10"
+                className="w-full input input-bordered h-10 bg-slate-100"
                 placeholder="Enter Password"
                 onChange={formik.handleChange}
                 value={formik.values.password}
@@ -161,7 +162,10 @@ const Signup = () => {
             ) : null}
           </div>
           <div>
-            <label className="label p-2 text-base label-text" htmlFor="confirmPassword">
+            <label
+              className="label p-2 text-base label-text text-slate-100"
+              htmlFor="confirmPassword"
+            >
               {' '}
               Confirm Password
             </label>
@@ -171,7 +175,7 @@ const Signup = () => {
                 name="confirmPassword"
                 id="confirmPassword"
                 type={`${isConfirmPasswordVisible ? 'text' : 'password'}`}
-                className="w-full input input-bordered h-10"
+                className="w-full input input-bordered h-10 bg-slate-100"
                 placeholder="Enter Confirm Password"
                 onChange={formik.handleChange}
                 value={formik.values.confirmPassword}
@@ -191,15 +195,26 @@ const Signup = () => {
               </div>
             ) : null}
           </div>
-          <Link
-            to="/login"
-            className="text-sm hover:underline hover:text-blue-800 mt-2 inline-block p-2"
-          >
-            Already have an account?
-          </Link>
+          <div className="flex justify-between">
+            <Link
+              to="/login"
+              className="text-sm text-slate-100 hover:underline hover:text-blue-800 mt-2 inline-block p-2"
+            >
+              Already have an account?
+            </Link>
+            <button
+              className="text-sm text-slate-100 hover:font-bold"
+              onClick={() => navigate('/login')}
+            >
+              Login
+            </button>
+          </div>
 
           <div>
-            <button className="btn btn-block btn-sm mt-2" type="submit">
+            <button
+              className="btn btn-block btn-sm mt-2 text-[#837bc7] bg-slate-100 hover:bg-slate-100"
+              type="submit"
+            >
               Sign Up
             </button>
           </div>

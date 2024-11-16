@@ -3,13 +3,10 @@
 @tailwind utilities;
 
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url('/bg.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(rgba(191, 185, 247, 0.6), rgba(191, 185, 247, 0.8)), url('/bg1.png');
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -24,7 +21,7 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #242424;
-}
+} */
 
 .shake {
   animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.2s both;
@@ -33,7 +30,7 @@ body {
   perspective: 1000px;
 }
 
-@keyframes shake {
+ @keyframes shake {
   10%,
   90% {
     transform: translate3d(-1px, 0, 0);
@@ -52,4 +49,4 @@ body {
   60% {
     transform: translate3d(4px, 0, 0);
   }
-}
+} 

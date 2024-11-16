@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useLogin from '../Hooks/useLogin';
 import * as yup from 'yup';
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from 'react-icons/md';
@@ -8,6 +8,7 @@ import { MdOutlineVisibility, MdOutlineVisibilityOff } from 'react-icons/md';
 const Login = () => {
   const { login } = useLogin();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const navigate = useNavigate();
   const validationSchema = yup.object({
     userName: yup
       .string()
@@ -43,13 +44,13 @@ const Login = () => {
         <h1 className="text-2xl font-semibold text-center text-gray-200">Login ChatApp</h1>
         <form onSubmit={formik.handleSubmit}>
           <div>
-            <label className="label p-2 text-base label-text" htmlFor="userName">
+            <label className="label p-2 text-base label-text text-slate-100" htmlFor="userName">
               {' '}
               Username
             </label>
             <input
               type="text"
-              className="w-full input input-bordered h-10"
+              className="w-full input input-bordered h-10 bg-slate-100"
               placeholder="Enter Username"
               name="userName"
               id="userName"
@@ -63,7 +64,7 @@ const Login = () => {
             </div>
           </div>
           <div>
-            <label className="label p-2 text-base label-text" htmlFor="password">
+            <label className="label p-2 text-base label-text text-slate-100" htmlFor="password">
               {' '}
               Password
             </label>
@@ -72,7 +73,7 @@ const Login = () => {
                 name="password"
                 id="password"
                 type={`${isPasswordVisible ? 'text' : 'password'}`}
-                className="w-full input input-bordered h-10"
+                className="w-full input input-bordered h-10 bg-slate-100"
                 placeholder="Enter Password"
                 onChange={formik.handleChange}
                 value={formik.values.password}
@@ -90,15 +91,26 @@ const Login = () => {
               </span>
             </div>
           </div>
-          <Link
-            to="/signup"
-            className="text-sm hover:underline hover:text-blue-800 mt-2 inline-block p-2"
-          >
-            {"Don't"} have an account?
-          </Link>
+          <div className="flex justify-between">
+            <Link
+              to="/signup"
+              className="text-sm hover:underline hover:text-blue-800 mt-2 inline-block p-2 text-slate-100"
+            >
+              {"Don't"} have an account?
+            </Link>
+            <button
+              className="text-slate-100 text-sm hover:font-bold"
+              onClick={() => navigate('/signup')}
+            >
+              Sign Up
+            </button>
+          </div>
 
           <div>
-            <button type="submit" className="btn btn-block btn-sm mt-2">
+            <button
+              type="submit"
+              className="btn btn-block btn-sm mt-2 bg-slate-100 text-[#837bc7] hover:bg-slate-100"
+            >
               Login
             </button>
           </div>
