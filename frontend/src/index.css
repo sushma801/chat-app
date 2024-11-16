@@ -30,7 +30,7 @@ body {
   perspective: 1000px;
 }
 
- @keyframes shake {
+@keyframes shake {
   10%,
   90% {
     transform: translate3d(-1px, 0, 0);
@@ -49,4 +49,4 @@ body {
   60% {
     transform: translate3d(4px, 0, 0);
   }
-} 
+}

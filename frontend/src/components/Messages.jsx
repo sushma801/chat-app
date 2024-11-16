@@ -30,7 +30,7 @@ const Messages = () => {
       {loading ? (
         [...Array(3)].map((index) => <MessageSkelaton key={index} />)
       ) : messages.length === 0 ? (
-        <p className="text-center">Send a message to start conversation</p>
+        <p className="text-center text-slate-100">Send a message to start conversation</p>
       ) : (
         messages.map((message) => (
           <div key={message._id} ref={lastMessageRef}>

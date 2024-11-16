@@ -11,8 +11,8 @@ const Conversation = ({ conversation, lastIdx }) => {
   return (
     <>
       <div
-        className={`flex gap-2 items-center hover:bg-sky-400 rounded p-2 py-1 cursor-pointer ${
-          isSelected ? 'bg-sky-400' : ''
+        className={`flex gap-2 items-center hover:bg-[#b8a14f] rounded p-2 py-1 cursor-pointer ${
+          isSelected ? 'bg-[#837bc7]' : ''
         }`}
         onClick={() => setSelectedConversation(conversation)}
       >
