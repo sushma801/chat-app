@@ -6,7 +6,7 @@ body {
   background: linear-gradient(rgba(191, 185, 247, 0.6), rgba(191, 185, 247, 0.8)), url('/bg1.png');
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -21,7 +21,7 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #242424;
-} */
+}
 
 .shake {
   animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.2s both;
