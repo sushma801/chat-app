@@ -39,3 +39,7 @@ MongoDB: A NoSQL database for storing user data, messages, and chat histories, o
 Socket.io: For real-time event-based communication.
 
 JWT: For secure user authentication
+
+
+#### when need to run local
+#### MONGODB_URL=mongodb://127.0.0.1:27017/chat-app
