@@ -13,13 +13,13 @@ export default defineConfig({
     },
   },
   test: {
-    environment: 'jsdom',
     globals: true,
+    environment: 'jsdom',
     setupFiles: './setup.js',
     coverage: {
-      reporter: ['text', 'html', 'lcov'],
-      include: ['src/**/*.{js,jsx}'], // Files to include in coverage
-      exclude: ['node_modules'],
+      provider: 'c8',
+      reporter: ['text', 'lcov', 'json-summary'],
+      reportsDirectory: './coverage',
     },
     include: ['**/*.{test,spec}.?(c|m)[jt]s?(x)'],
     exclude: [

@@ -20,7 +20,8 @@ describe('Signup Page', () => {
     const formElemets = container.querySelector('form').querySelectorAll('input');
     expect(formElemets).toHaveLength(7);
     expect(container.querySelector('form a')).toHaveTextContent('Already have an account?');
-    const signUpBtn = container.querySelector('form').querySelectorAll('button')[2];
+    screen.debug();
+    const signUpBtn = container.querySelector('form').querySelectorAll('button')[3];
     expect(signUpBtn).toHaveTextContent('Sign Up');
     fireEvent.click(signUpBtn);
     expect(window.location.pathname).toBe(href);

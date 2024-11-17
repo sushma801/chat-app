@@ -2,13 +2,13 @@
 
 link to access the app: https://chat-app-0tol.onrender.com/
 
-Description about the app:
+# Description about the app:
 
-Our chat application is a robust and scalable platform designed to facilitate real-time communication. Utilizing modern web technologies, the app provides a seamless and responsive user experience for large screen
+Our chat application is a robust and scalable platform designed to facilitate real-time communication. Utilizing modern web technologies, the app provides a seamless and responsive user experience for large screen and ipad screen
 
 ############################################################################
 
-Features
+# Features
 
 Real-Time Messaging: Instant message delivery.
 
@@ -16,29 +16,29 @@ User Authentication: Secure login and registration using JWT (JSON Web Tokens).
 
 Notifications: Real-time notifications to keep users informed of new messages and updates.
 
-Search Functionality: Quickly find past conversations and messages.
+Search Functionality: Search a name which is entered in the search box and Quickly find past conversations and show the messages two users .
 
 #############################################################################
 
-Technology Stack:
+# Technology Stack:
 
-Frontend: Built with React, leveraging its component-based architecture for a dynamic and responsive user interface.
+## Frontend: Built with React, leveraging its component-based architecture for a dynamic and responsive user interface.
 
-React Router: For seamless navigation within the app.
+## React Router: For seamless navigation within the app.
 
-Socket.io: To enable real-time, bidirectional communication between the client and server.
+## Socket.io: To enable real-time, bidirectional communication between the client and server.
 
 #############################################################################
 
-Backend: Developed using Node.js, providing a scalable and efficient server environment.
+## Backend: Developed using Node.js, providing a scalable and efficient server environment.
 
-Express.js: A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+## Express.js: A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
-MongoDB: A NoSQL database for storing user data, messages, and chat histories, offering flexibility and scalability.
+## MongoDB: A NoSQL database for storing user data, messages, and chat histories, offering flexibility and scalability.
 
-Socket.io: For real-time event-based communication.
+## Socket.io: For real-time event-based communication.
 
-JWT: For secure user authentication
+## JWT: For secure user authentication
 
 
 #### when need to run local
