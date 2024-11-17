@@ -9,7 +9,7 @@ const MessageSkelaton = () => {
       <div className="chat-image avatar skeleton">
         <div className="w-10 rounded-full skeleton"></div>
       </div>
-      <div className={`chat-bubble skeleton w-[50%]`}></div>
+      <div className={`chat-bubble skeleton w-[50%] bg-slate-200`}></div>
     </div>
   );
 };
@@ -28,7 +28,7 @@ const Messages = () => {
   return (
     <div className="px-4 flex-1 overflow-auto">
       {loading ? (
-        [...Array(3)].map((index) => <MessageSkelaton key={index} />)
+        [...Array(messages.length | 2)].map((index) => <MessageSkelaton key={index} />)
       ) : messages.length === 0 ? (
         <p className="text-center text-slate-100">Send a message to start conversation</p>
       ) : (

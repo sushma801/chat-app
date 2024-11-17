@@ -30,8 +30,10 @@ const useSignup = () => {
       // store the value to the local storage
       localStorage.setItem('authUser', JSON.stringify(res.data));
       setAuthUser(res.data);
+      return res;
     } catch (e) {
       console.log('error');
+      throw new Error(e.response?.data?.error || `Something is Wrong`);
     } finally {
       setLoading(false);
     }

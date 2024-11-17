@@ -18,7 +18,7 @@ function App() {
           path="/"
           element={
             authUser ? (
-              <Suspense fallback={<span className="loading" />}>
+              <Suspense fallback={<span className="loading loading-spinner loading-lg"></span>}>
                 <Home />
               </Suspense>
             ) : (
@@ -32,7 +32,7 @@ function App() {
             authUser ? (
               <Navigate to="/" />
             ) : (
-              <Suspense fallback={<span className="loading" />}>
+              <Suspense fallback={<span className="loading loading-spinner loading-lg"></span>}>
                 <Login />
               </Suspense>
             )
@@ -44,7 +44,7 @@ function App() {
             authUser ? (
               <Navigate to="/" />
             ) : (
-              <Suspense fallback={<span className="loading" />}>
+              <Suspense fallback={<span className="loading loading-spinner loading-lg"></span>}>
                 <Signup />
               </Suspense>
             )
