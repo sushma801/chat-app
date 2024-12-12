@@ -76,7 +76,7 @@ const Login = () => {
                 value={formik.values.userName}
               />
               <div>
-                <span className="text-red-800 font-semibold p-2">
+                <span className="text-red-800 font-semibold p-2 error">
                   {formik.touched.userName && formik.errors.userName
                     ? formik.errors.userName
                     : null}
