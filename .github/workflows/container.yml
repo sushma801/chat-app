@@ -21,8 +21,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - run: npx husky install
       - run: npm update
       - run: npm ci
-      - run: npx husky install
       - run: npx run lint
       - run: npm run test
