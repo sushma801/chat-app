@@ -7,7 +7,7 @@
     "server": "nodemon backend/server.js",
     "start": "node backend/server.js",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "prepare": "husky install",
+    "prepare": "husky || true",
     "lint:frontend": "eslint -c frontend/.eslintrc.json \"frontend/src/**/*.{js,jsx}\" --max-warnings 0",
     "lint:backend": "eslint -c .eslintrc.json \"backend/**/*.{js,jsx}\" --max-warnings 0",
     "format:frontend": "npm --prefix frontend run format",
