@@ -57,4 +57,12 @@ describe('Search Input Component', () => {
     //   expect(setSelectedConversation).toHaveBeenCalledWith({ id: 2, fullName: 'Jane Doe' });
     // });
   });
+  it('Component render check', async () => {
+    let wrapper;
+    await act(async () => {
+      const { container } = await render(<SearchInput />);
+      wrapper = container;
+    });
+    expect(wrapper).toBeTruthy();
+  });
 });
