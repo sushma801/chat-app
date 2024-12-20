@@ -4,6 +4,7 @@ import MessageInput from './MessageInput';
 import { TiMessages } from 'react-icons/ti';
 import { useConversation } from '../zustant/useConversation';
 import { useAuthContext } from '../context/AuthContext';
+import { useSelector } from 'react-redux';
 
 const NoChatSelected = () => {
   const { authUser } = useAuthContext();
@@ -19,11 +20,12 @@ const NoChatSelected = () => {
 };
 
 const MessageContainer = () => {
-  const { selectedConversation, setSelectedConversation } = useConversation();
-  useEffect(() => {
-    // cleanup function
-    return () => setSelectedConversation(null);
-  }, [setSelectedConversation]);
+  // const { selectedConversation, setSelectedConversation } = useConversation();
+  // useEffect(() => {
+  //   // cleanup function
+  //   return () => setSelectedConversation(null);
+  // }, [setSelectedConversation]);
+  const selectedConversation = useSelector((state) => state.conversation.selectedConversation);
   return (
     <div className="md:min-w-[450px] flex flex-col">
       {!selectedConversation ? (

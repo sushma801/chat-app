@@ -32,7 +32,7 @@ const Messages = () => {
         Array.from({ length: Math.max(messages.length, 2) }).map((index) => (
           <MessageSkeleton key={index} />
         ))
-      ) : messages.length === 0 ? (
+      ) : messages?.length === 0 ? (
         <p className="text-center text-slate-100">Send a message to start conversation</p>
       ) : (
         messages.map((message) => (

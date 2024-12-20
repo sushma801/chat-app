@@ -1,16 +1,25 @@
 import './App.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuthContext } from './context/AuthContext';
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
 const Home = lazy(() => import('./pages/Home'));
 
 function App() {
-  const { authUser } = useAuthContext();
-  const [count, setCount] = useState(0);
-  const handleClick = () => setCount(count + 1);
+  // const { authUser } = useAuthContext();
+  // console.log(authUser);
+  const isUserLoggedIn = useSelector((state) => state.conversationUsers.logedInUser);
+  const [authUser, setAuthUser] = useState(isUserLoggedIn);
+  useEffect(() => {
+    const userDetails = localStorage.getItem('authUser');
+    if (userDetails) {
+      setAuthUser(userDetails);
+    }
+  }, [authUser]);
+
   return (
     <div className="p-4 h-screen flex items-center justify-center">
       <Routes>

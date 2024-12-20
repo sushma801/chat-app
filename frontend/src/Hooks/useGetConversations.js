@@ -1,16 +1,23 @@
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthUser, setUsers } from '../store/UserSlice';
 
 const useGetConversations = () => {
   const [loading, setLoading] = useState(false);
-  const [conversations, setConversations] = useState([]);
+  // const [conversations, setConversations] = useState([]);
+  const conversations = useSelector((state) => state.conversationUsers.users);
+  const dispatch = useDispatch();
 
   const getConversations = useCallback(async () => {
     setLoading(true);
+    const authUser = JSON.parse(localStorage.getItem('authUser'));
     try {
       const res = await axios.get('/api/users');
       if (res.data.error) throw new Error(res.data.error);
-      setConversations(res.data);
+      // setConversations(res.data);
+      dispatch(setUsers(res.data));
+      dispatch(setAuthUser(authUser));
     } catch (e) {
       console.log('Error while loading the users');
     } finally {

@@ -33,7 +33,10 @@ const Login = () => {
     onSubmit: async (values) => {
       setErrorMessage('');
       try {
-        await login(values);
+        const isUserLoggedIn = await login(values);
+        if (isUserLoggedIn === 200) {
+          navigate('/');
+        }
       } catch (e) {
         console.log(e.message);
         setErrorMessage(e.message);

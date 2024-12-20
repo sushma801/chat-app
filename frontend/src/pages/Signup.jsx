@@ -54,7 +54,10 @@ const Signup = () => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        await signup(values);
+        const status = await signup(values);
+        if (status === 201) {
+          navigate('/');
+        }
       } catch (e) {
         setErrorMessage(e.message);
         setTimeout(() => {

@@ -138,7 +138,7 @@ describe('Login page', () => {
     // fireEvent.change(passwordInput, { target: { value: 'Password@1' } });
   });
 
-  it.skip('should show loading spinner when loading is true', () => {
+  it('should show loading spinner when loading is true', () => {
     const { container } = render(
       <MemoryRouter>
         <AuthContextProvider>

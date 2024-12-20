@@ -3,10 +3,13 @@ import { IoSearchSharp } from 'react-icons/io5';
 import { useConversation } from '../zustant/useConversation';
 import useGetConversations from '../Hooks/useGetConversations';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { setSelectedConversation } from '../store/ConversationSlice';
 
 const SearchInput = () => {
   const [search, setSearch] = useState('');
-  const { setSelectedConversation } = useConversation();
+  // const { setSelectedConversation } = useConversation();
+  const dispatch = useDispatch();
   const { conversations } = useGetConversations();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +18,7 @@ const SearchInput = () => {
       c.fullName.toLowerCase().includes(search.toLowerCase()),
     );
     if (conversation) {
-      setSelectedConversation(conversation);
+      dispatch(setSelectedConversation(conversation));
       setSearch('');
     } else {
       toast.error(`No such user found with ${search}`, { duration: 1000 });

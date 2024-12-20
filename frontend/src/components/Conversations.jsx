@@ -1,10 +1,16 @@
 import React from 'react';
 import Conversation from './Conversation';
 import useGetConversations from '../Hooks/useGetConversations';
+import { useDispatch } from 'react-redux';
+import { setSelectedConversation } from '../store/ConversationSlice';
 
 const Conversations = () => {
   const { loading, conversations } = useGetConversations();
-  console.log({ conversations });
+  const dispatch = useDispatch();
+  const handleSelectedUser = (user) => {
+    dispatch(setSelectedConversation(user));
+  };
+
   return (
     <div className="py-2 flex flex-col overflow-auto">
       {conversations.map((conversation, idx) => (
@@ -12,6 +18,7 @@ const Conversations = () => {
           key={conversation._id}
           conversation={conversation}
           lastIdx={idx === conversations.length - 1}
+          selectedUser={handleSelectedUser}
         />
       ))}
       {loading ? <span className="loading loading-spinner mx-auto"></span> : null}
