@@ -21,6 +21,6 @@ describe('Logout Button', async () => {
     expect(container).toBeTruthy();
     const logoutBtn = container.querySelector('button');
     expect(logoutBtn).toHaveAttribute('aria-label', 'Logout Button');
-    screen.debug(logoutBtn);
+    fireEvent.click(logoutBtn);
   });
 });

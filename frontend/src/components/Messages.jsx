@@ -3,7 +3,7 @@ import Message from './Message';
 import useGetMessages from '../Hooks/useGetMessages';
 import useListenMessages from '../Hooks/useListenMessages';
 
-const MessageSkelaton = () => {
+const MessageSkeleton = () => {
   return (
     <div className="chat chat-end">
       <div className="chat-image avatar skeleton">
@@ -28,7 +28,10 @@ const Messages = () => {
   return (
     <div className="px-4 flex-1 overflow-auto">
       {loading ? (
-        [...Array(messages.length | 2)].map((index) => <MessageSkelaton key={index} />)
+        // [...Array(messages.length | 2)].map((index) => <MessageSkeleton key={index} />)
+        Array.from({ length: Math.max(messages.length, 2) }).map((index) => (
+          <MessageSkeleton key={index} />
+        ))
       ) : messages.length === 0 ? (
         <p className="text-center text-slate-100">Send a message to start conversation</p>
       ) : (

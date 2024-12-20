@@ -11,7 +11,6 @@ const useLogin = () => {
       const headers = { 'Content-Type': 'application/json' };
       const userData = { userName, password };
       const res = await axios.post('/api/auth/login', JSON.stringify(userData), { headers });
-      console.log('res', res);
       if (res.data.error) throw new Error(res.data.error);
       localStorage.setItem('authUser', JSON.stringify(res.data));
       setAuthUser(res.data);
