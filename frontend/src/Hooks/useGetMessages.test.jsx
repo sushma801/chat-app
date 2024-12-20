@@ -38,7 +38,7 @@ describe('useGetMessages Hook', () => {
     vi.clearAllMocks();
   });
 
-  it.only('should fetch messages successfully and store them in the Redux store', async () => {
+  it('should fetch messages successfully and store them in the Redux store', async () => {
     const mockMessages = [
       { id: 1, text: 'hello' },
       { id: 2, text: 'world' },
@@ -63,24 +63,4 @@ describe('useGetMessages Hook', () => {
     expect(result.current.loading).toBe(false);
     expect(mockDispatch).toHaveBeenCalledWith(setMessages(mockMessages));
   });
-
-  // it.only('should set loading to true initially and false after fetching messages successfully', async () => {
-  //   const mockResponse = { data: [{ id: 1, message: 'Hello' }] };
-  //   axios.post.mockResolvedValueOnce(mockResponse);
-  //   const { result } = renderHook(() => useGetMessages());
-
-  //   expect(axios.post).toHaveBeenCalledWith(
-  //     '/api/messages/conversation-id-123',
-  //     {},
-  //     { headers: { 'Content-Type': 'application/json' } },
-  //   );
-
-  //   expect(result.current.loading).toBe(false);
-
-  //   // await waitFor(() => {
-  //   //   expect(result.current.loading).toBe(false);
-  //   // });
-
-  //   // expect(setMessagesMock).toHaveBeenCalledWith(mockResponse.data);
-  // });
 });

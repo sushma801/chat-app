@@ -53,7 +53,7 @@ describe('useListenMessages', () => {
     expect(mockSocket.on).toHaveBeenCalledWith('newMessage', expect.any(Function));
   });
 
-  it.only('should add a new message and play sound when "newMessage" event is emitted', () => {
+  it('should add a new message and play sound when "newMessage" event is emitted', () => {
     const newMessage = { text: 'Hello!', sender: 'User1', shouldShake: false };
     useSelector.mockReturnValue([]);
     const { result } = renderHook(() => useListenMessages());
