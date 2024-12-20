@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - frontend
+      - 'frontend/**'
   workflow_dispatch: #Manual trigger option
 
 defaults:
@@ -34,10 +34,9 @@ jobs:
 
       - name: Checking the lint of the Package
         run: npx run lint
-        
-      - name: Run the test cases  
+
+      - name: Run the test cases
         run: npm run test
 
       - name: Run the test coverage
         run: npm run test:cov
-
