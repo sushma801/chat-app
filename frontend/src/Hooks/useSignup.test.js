@@ -3,10 +3,16 @@ import axios from 'axios';
 import { useAuthContext } from '../context/AuthContext';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import useSignup from './useSignup';
+import { useDispatch } from 'react-redux';
+import { setAuthUser } from '../store/UserSlice';
 
 // Mock dependencies
-vi.mock('../context/AuthContext', () => ({
-  useAuthContext: vi.fn(),
+vi.mock('react-redux', () => ({
+  useDispatch: vi.fn(),
+}));
+
+vi.mock('../store/UserSlice', () => ({
+  setAuthUser: vi.fn(),
 }));
 
 vi.mock('axios', async (importOriginal) => {
@@ -21,17 +27,15 @@ vi.mock('axios', async (importOriginal) => {
 });
 
 describe('useSignup Hook', async () => {
-  let setAuthUserMock;
+  let mockDispatch;
 
   beforeEach(() => {
-    setAuthUserMock = vi.fn();
-    useAuthContext.mockReturnValue({
-      setAuthUser: setAuthUserMock,
-    });
+    mockDispatch = vi.fn();
+    useDispatch.mockReturnValue(mockDispatch);
     vi.clearAllMocks();
     vi.spyOn(localStorage, 'setItem');
   });
-  it.skip('should set loading to true initially and false after signup successfully', async () => {
+  it('should set loading to true initially and false after signup successfully', async () => {
     const mockResponse = { data: { id: 1, fullName: 'John Doe' } };
     axios.post.mockResolvedValueOnce(mockResponse);
 
@@ -52,10 +56,10 @@ describe('useSignup Hook', async () => {
       expect(result.current.loading).toBe(false);
     });
 
-    expect(setAuthUserMock).toHaveBeenCalledWith(mockResponse.data);
+    expect(mockDispatch).toHaveBeenCalledWith(setAuthUser(mockResponse.data));
   });
 
-  it.skip('should handle errors correctly and stop loading', async () => {
+  it('should handle errors correctly and stop loading', async () => {
     const mockError = { response: { data: { error: 'Signup failed' } } };
     axios.post.mockRejectedValueOnce(mockError);
 
@@ -74,6 +78,7 @@ describe('useSignup Hook', async () => {
     });
 
     expect(result.current.loading).toBe(false);
-    expect(setAuthUserMock).not.toHaveBeenCalled();
+    expect(mockDispatch).not.toHaveBeenCalled(setAuthUser(mockError.data));
+    // expect(setAuthUserMock).not.toHaveBeenCalled();
   });
 });

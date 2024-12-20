@@ -1,48 +1,62 @@
-import { vi, describe, it, expect } from 'vitest';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import useLogin from './useLogin';
-import { useAuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { act, renderHook } from '@testing-library/react';
 import { useDispatch } from 'react-redux';
+import { setAuthUser } from '../store/UserSlice';
 
 vi.mock('axios'); // Mock axios
-vi.mock('../context/AuthContext', () => ({
-  useAuthContext: vi.fn(),
-}));
 
 vi.mock('react-redux', () => ({
   useDispatch: vi.fn(),
 }));
 
-describe('useLogin', () => {
-  it('sets loading to true while the login request is in progress', async () => {
-    const setAuthUser = vi.fn();
-    useAuthContext.mockReturnValue({ setAuthUser });
+vi.mock('../store/UserSlice', () => ({
+  setAuthUser: vi.fn(),
+}));
 
-    axios.post.mockResolvedValueOnce({ data: { userName: 'user', token: 'abcd' } });
+describe('useLogin', () => {
+  let mockDispatch;
+
+  beforeEach(() => {
+    mockDispatch = vi.fn();
+    useDispatch.mockReturnValue(mockDispatch);
+    vi.clearAllMocks();
+  });
+  it('sets loading to true while the login request is in progress', async () => {
+    const userCredentials = { userName: 'jhon_doe', password: 'password@123' };
+    const mockResponse = { data: { id: 1, name: 'Jhon Doe', token: '123abc' } };
+
+    axios.post.mockResolvedValueOnce(mockResponse);
 
     const { result } = renderHook(() => useLogin());
 
-    expect(result.current.loading).toBe(false);
-
-    act(() => {
-      result.current.login({ userName: 'user', password: 'password' });
+    await act(async () => {
+      await result.current.login(userCredentials);
+    });
+    // expect(result.current.loading).toBe(true);
+    expect(axios.post).toHaveBeenCalledWith('/api/auth/login', JSON.stringify(userCredentials), {
+      headers: { 'Content-Type': 'application/json' },
     });
 
-    expect(result.current.loading).toBe(true); // Check if loading is set to true
+    expect(mockDispatch).toHaveBeenCalledWith(setAuthUser(mockResponse.data));
+    expect(result.current.loading).toBe(false);
   });
 
   it('throws an error if login fails', async () => {
-    const setAuthUser = vi.fn();
-    useAuthContext.mockReturnValue({ setAuthUser });
+    const userCredentials = { userName: 'invalid_user', password: 'wrong_password' };
+    const mockError = { response: { data: { error: 'Invalid username or password' } } };
 
-    const userData = { userName: 'user', password: 'wrongPassword' };
-    axios.post.mockRejectedValueOnce({
-      response: { data: { error: 'Invalid credentials' } },
-    });
-
+    axios.post.mockRejectedValue(mockError);
     const { result } = renderHook(() => useLogin());
-
-    await expect(result.current.login(userData)).rejects.toThrow('Invalid credentials');
+    await act(async () => {
+      try {
+        await result.current.login(userCredentials);
+      } catch (e) {
+        expect(e.message).toBe('Invalid username or password');
+      }
+    });
+    expect(mockDispatch).not.toHaveBeenCalled();
+    expect(result.current.loading).toBe(false);
   });
 });

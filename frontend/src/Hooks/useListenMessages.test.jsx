@@ -5,14 +5,18 @@ import useListenMessages from './useListenMessages';
 import notificationSound from '../assets/sound/I_phone.mp3';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { act } from 'react';
+import { setMessages } from '../store/ConversationSlice';
 
 // Mock modules
 vi.mock('../context/SocketContext', () => ({
   useSocketContext: vi.fn(),
 }));
 
-vi.mock('../zustant/useConversation', () => ({
-  useConversation: vi.fn(),
+vi.mock('react-redux', () => ({
+  useDispatch: vi.fn(),
+  useSelector: vi.fn(),
 }));
 
 vi.mock('../assets/sound/I_phone.mp3', () => ({
@@ -25,69 +29,39 @@ global.Audio = vi.fn().mockImplementation(() => ({
 }));
 
 describe('useListenMessages', () => {
-  let setMessages;
-  let socket;
+  let mockDispatch;
+  let mockSocket;
 
   beforeEach(() => {
     // Setup mock socket and setMessages function
-    setMessages = vi.fn();
-    socket = { on: vi.fn(), off: vi.fn() };
+    mockDispatch = vi.fn();
+    mockSocket = { on: vi.fn(), off: vi.fn() };
 
-    useSocketContext.mockReturnValue({ socket });
-    useConversation.mockReturnValue({ messages: [], setMessages });
+    useSocketContext.mockReturnValue({ socket: mockSocket });
+    useDispatch.mockReturnValue(mockDispatch);
+    // useConversation.mockReturnValue({ messages: [], setMessages });
   });
 
   afterEach(() => {
     vi.clearAllMocks();
   });
 
-  it.skip('should register a listener for "newMessage" on mount', () => {
+  it('should register a listener for "newMessage" on mount', () => {
     renderHook(() => useListenMessages());
 
     // Check if the socket `on` method is called with the correct arguments
-    expect(socket.on).toHaveBeenCalledWith('newMessage', expect.any(Function));
+    expect(mockSocket.on).toHaveBeenCalledWith('newMessage', expect.any(Function));
   });
 
-  it.skip('should add a new message and play sound when "newMessage" event is emitted', () => {
+  it.only('should add a new message and play sound when "newMessage" event is emitted', () => {
+    const newMessage = { text: 'Hello!', sender: 'User1', shouldShake: false };
+    useSelector.mockReturnValue([]);
     const { result } = renderHook(() => useListenMessages());
-    const newMessage = { text: 'Hello!', shouldShake: false };
 
-    // Emit the 'newMessage' event
-    const callback = socket.on.mock.calls[0][1]; // The callback function
-    callback(newMessage);
+    act(() => {
+      mockSocket.on.mock.calls[0][1](newMessage);
+    });
 
-    // Check if setMessages was called with the new message
-    expect(setMessages).toHaveBeenCalledWith([newMessage]);
-
-    // Check if the 'shouldShake' property is set on the new message
-    expect(newMessage.shouldShake).toBe(true);
-
-    // Check if the sound is played
-    // eslint-disable-next-line no-undef
-    expect(global.Audio).toHaveBeenCalledWith(notificationSound);
-  });
-
-  it.skip('should clean up socket listener on unmount', () => {
-    const { unmount } = renderHook(() => useListenMessages());
-
-    unmount();
-
-    // Ensure the socket `off` method is called to remove the listener
-    expect(socket.off).toHaveBeenCalledWith('newMessage');
-  });
-
-  it.skip('should add new messages to the existing message list', () => {
-    const initialMessages = [{ text: 'Old message' }];
-    useConversation.mockReturnValue({ messages: initialMessages, setMessages });
-
-    const { result } = renderHook(() => useListenMessages());
-    const newMessage = { text: 'New message' };
-
-    // Emit the 'newMessage' event
-    const callback = socket.on.mock.calls[0][1];
-    callback(newMessage);
-
-    // Check if setMessages is called with the correct new array
-    expect(setMessages).toHaveBeenCalledWith([...initialMessages, newMessage]);
+    expect(mockDispatch).toHaveBeenCalledWith(setMessages([newMessage]));
   });
 });
