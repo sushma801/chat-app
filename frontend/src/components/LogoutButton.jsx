@@ -5,9 +5,9 @@ import useLogout from '../Hooks/useLogout';
 const LogoutButton = () => {
   const { logout } = useLogout();
   return (
-    <div className="mt-auto">
-      <BiLogOut className="w-6 h-6 text-white cursor-pointer" onClick={logout} />
-    </div>
+    <button className="logoutBtn mt-auto" onClick={logout} aria-label="Logout Button">
+      <BiLogOut className="w-6 h-6 text-white cursor-pointer" />
+    </button>
   );
 };
 
