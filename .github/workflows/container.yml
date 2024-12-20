@@ -21,7 +21,7 @@ jobs:
 
     env:
       # This variable tells Husky to skip the install process
-      HUSKY: 0
+      HUSKY_SKIP: 1
 
     steps:
       - uses: actions/checkout@v3
