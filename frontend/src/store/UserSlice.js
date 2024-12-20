@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   users: [],
-  logedInUser: null,
+  loggedInUser: null,
 };
 
 const UserSlice = createSlice({
@@ -15,9 +15,9 @@ const UserSlice = createSlice({
     setAuthUser: (state, action) => {
       const authUser = localStorage.getItem('authUser');
       if (authUser) {
-        state.logedInUser = authUser;
+        state.loggedInUser = authUser;
       }
-      state.logedInUser = action.payload;
+      state.loggedInUser = action.payload;
     },
   },
 });

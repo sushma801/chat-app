@@ -11,7 +11,7 @@ const Home = lazy(() => import('./pages/Home'));
 function App() {
   // const { authUser } = useAuthContext();
   // console.log(authUser);
-  const isUserLoggedIn = useSelector((state) => state.conversationUsers.logedInUser);
+  const isUserLoggedIn = useSelector((state) => state.conversationUsers.loggedInUser);
   const [authUser, setAuthUser] = useState(isUserLoggedIn);
   useEffect(() => {
     const userDetails = localStorage.getItem('authUser');
