@@ -20,7 +20,7 @@ const useLogin = () => {
       dispatch(setAuthUser(res.data));
       return res.status;
     } catch (e) {
-      console.log(e.response.data.error);
+      console.log(e.response?.data?.error);
 
       throw new Error(e.response?.data?.error || `Something is Wrong`);
     } finally {

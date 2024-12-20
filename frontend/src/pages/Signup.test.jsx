@@ -3,15 +3,17 @@ import { describe, expect, it } from 'vitest';
 import Signup from './Signup';
 import { AuthContextProvider } from '../context/AuthContext';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import Store from '../store/Store';
 
 describe('Signup Page', () => {
   it('Render signup page', () => {
     const href = '/';
     const { container } = render(
       <MemoryRouter>
-        <AuthContextProvider>
+        <Provider store={Store}>
           <Signup />
-        </AuthContextProvider>
+        </Provider>
       </MemoryRouter>,
     );
 

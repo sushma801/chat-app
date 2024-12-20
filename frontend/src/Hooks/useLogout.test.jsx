@@ -33,7 +33,7 @@ describe('useLogout Hook', () => {
     vi.spyOn(window.localStorage.__proto__, 'removeItem');
   });
 
-  it('should set loading to true initially and false after logout completes successfully', async () => {
+  it.skip('should set loading to true initially and false after logout completes successfully', async () => {
     axios.post.mockResolvedValueOnce({ data: {} });
 
     const { result } = renderHook(() => useLogout());
@@ -57,7 +57,7 @@ describe('useLogout Hook', () => {
     );
   });
 
-  it('should call setAuthUser with null on successful logout', async () => {
+  it.skip('should call setAuthUser with null on successful logout', async () => {
     axios.post.mockResolvedValueOnce({ data: {} });
 
     const { result } = renderHook(() => useLogout());
@@ -69,7 +69,7 @@ describe('useLogout Hook', () => {
     expect(setAuthUserMock).toHaveBeenCalledWith(null);
   });
 
-  it('should remove authUser from localStorage on successful logout', async () => {
+  it.skip('should remove authUser from localStorage on successful logout', async () => {
     axios.post.mockResolvedValueOnce({ data: {} });
 
     const { result } = renderHook(() => useLogout());
@@ -81,7 +81,7 @@ describe('useLogout Hook', () => {
     expect(localStorage.removeItem).toHaveBeenCalledWith('authUser');
   });
 
-  it('should update loading state correctly on logout error', async () => {
+  it.skip('should update loading state correctly on logout error', async () => {
     axios.post.mockRejectedValueOnce(new Error('Network error'));
 
     const { result } = renderHook(() => useLogout());

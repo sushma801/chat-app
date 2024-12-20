@@ -3,10 +3,15 @@ import useLogin from './useLogin';
 import { useAuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { act, renderHook } from '@testing-library/react';
+import { useDispatch } from 'react-redux';
 
 vi.mock('axios'); // Mock axios
 vi.mock('../context/AuthContext', () => ({
   useAuthContext: vi.fn(),
+}));
+
+vi.mock('react-redux', () => ({
+  useDispatch: vi.fn(),
 }));
 
 describe('useLogin', () => {
