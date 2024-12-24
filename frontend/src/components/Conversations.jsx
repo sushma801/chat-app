@@ -5,7 +5,7 @@ const Conversations = () => {
   const { loading, conversations } = useGetConversations();
 
   return (
-    <div className="py-2 flex flex-col overflow-auto">
+    <div className="py-2 flex flex-col overflow-auto conversation-component">
       {conversations.map((conversation, idx) => (
         <Conversation
           key={conversation._id}

@@ -15,6 +15,7 @@ const useGetConversations = () => {
       try {
         const authUser = JSON.parse(localStorage.getItem('authUser'));
         const res = await axios.get('/api/users');
+        console.log({ res });
         if (res.data.error) throw new Error(res.data.error);
         // setConversations(res.data);
         dispatch(setUsers(res.data));

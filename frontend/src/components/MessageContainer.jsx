@@ -33,7 +33,9 @@ const MessageContainer = () => {
         <>
           <div className="bg-slate-100 px-4 py-2 mb-2 flex gap-x-2 items-center">
             <span className="label-text">To:</span>
-            <span className="text-gray-900 font-bold">{selectedConversation.fullName}</span>
+            <span className="text-gray-900 font-bold receiver">
+              {selectedConversation.fullName}
+            </span>
           </div>
           <Messages />
           <MessageInput />

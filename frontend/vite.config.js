@@ -20,6 +20,8 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'lcov', 'json-summary'],
       reportsDirectory: './coverage',
+      exclude: ['src/context', 'src/zustant'],
+      include: ['src/**'],
     },
     include: ['**/*.{test,spec}.?(c|m)[jt]s?(x)'],
     exclude: [

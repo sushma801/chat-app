@@ -13,7 +13,6 @@ const Conversation = ({ conversation, lastIdx }) => {
   const isSelected = selectedConversations?._id === conversation._id;
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(conversation._id);
-
   useEffect(() => {
     if (selectedConversationsDetails) {
       setSelectedConversations(selectedConversationsDetails);
@@ -30,7 +29,7 @@ const Conversation = ({ conversation, lastIdx }) => {
       <div
         className={`flex gap-2 items-center hover:bg-[#b8a14f] rounded p-2 py-1 cursor-pointer ${
           isSelected ? 'bg-[#837bc7]' : ''
-        }`}
+        } ${isSelected ? 'active' : ''}conversation`}
         // onClick={() => setSelectedConversation(conversation)}
         onClick={handleSelectConversation}
       >
