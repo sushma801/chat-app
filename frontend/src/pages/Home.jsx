@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 
 const Sidebar = lazy(() => import('../components/Sidebar'));
 const MessageContainer = lazy(() => import('../components/MessageContainer'));

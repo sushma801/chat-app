@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
 import Messages from './Messages';
 import MessageInput from './MessageInput';
 import { TiMessages } from 'react-icons/ti';
-import { useConversation } from '../zustant/useConversation';
-import { useAuthContext } from '../context/AuthContext';
+
 import { useSelector } from 'react-redux';
 
 const NoChatSelected = () => {
-  const { authUser } = useAuthContext();
+  // const { authUser } = useAuthContext();
+  const authUser = useSelector((state) => state.conversationUsers.loggedInUser);
   return (
     <div className="flex items-center justify-center w-full h-full">
       <div className="text-center px-4 sm:text-lg md:text-xl text-slate-100 font-semibold flex flex-col items-center gap-2">
-        <p>Welcome {authUser.fullName} </p>
+        <p>Welcome {authUser?.fullName} </p>
         <p>Select a chat to start messaging</p>
         <TiMessages className="text-3xl md:text-6xl text-center" />
       </div>

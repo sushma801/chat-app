@@ -1,7 +1,7 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import axios from 'axios';
 
-import { useAuthContext } from '../context/AuthContext';
+// import { useAuthContext } from '../context/AuthContext';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import useLogout from './useLogout';
 import { useDispatch } from 'react-redux';
@@ -83,7 +83,6 @@ describe('useLogout Hook', () => {
     // expect(setAuthUserMock).toHaveBeenCalledWith(null);
     expect(mockDispatch).toHaveBeenCalledWith(setAuthUser(null));
     expect(localStorage.removeItem).toHaveBeenCalledWith('authUser');
-    expect(mockNavigate).toHaveBeenCalledWith('/login');
   });
 
   it('should update loading state correctly on logout error', async () => {

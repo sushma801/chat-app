@@ -1,12 +1,10 @@
-import React from 'react';
-import { useAuthContext } from '../context/AuthContext';
-import { useConversation } from '../zustant/useConversation';
 import { extractTime } from '../utils/extractTime';
 import { useSelector } from 'react-redux';
 
 const Message = ({ message }) => {
-  const { authUser } = useAuthContext();
+  // const { authUser } = useAuthContext();
   // const { selectedConversation } = useConversation();
+  const authUser = useSelector((state) => state.conversationUsers.loggedInUser);
   const selectedConversation = useSelector((state) => state.conversation.selectedConversation);
   // eslint-disable-next-line react/prop-types
   const fromMe = message.senderId === authUser._id;

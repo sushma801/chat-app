@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useSignup from '../Hooks/useSignup';
 import * as yup from 'yup';
@@ -54,10 +54,7 @@ const Signup = () => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        const status = await signup(values);
-        if (status === 201) {
-          navigate('/');
-        }
+        await signup(values);
       } catch (e) {
         setErrorMessage(e.message);
         setTimeout(() => {

@@ -1,13 +1,11 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setAuthUser } from '../store/UserSlice';
-import { useNavigate } from 'react-router-dom';
+import { setAuthUser, setUsers } from '../store/UserSlice';
 
 const useLogout = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   // const { setAuthUser } = useAuthContext();
   const logout = async () => {
     setLoading(true);
@@ -17,8 +15,8 @@ const useLogout = () => {
       if (res.data.error) throw new Error(res.data.error);
       localStorage.removeItem('authUser');
       // setAuthUser(null);
+      dispatch(setUsers([]));
       dispatch(setAuthUser(null));
-      navigate('/login');
     } catch (e) {
       console.log('error');
     } finally {

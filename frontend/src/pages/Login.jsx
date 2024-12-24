@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useLogin from '../Hooks/useLogin';
 import * as yup from 'yup';
@@ -33,12 +33,8 @@ const Login = () => {
     onSubmit: async (values) => {
       setErrorMessage('');
       try {
-        const isUserLoggedIn = await login(values);
-        if (isUserLoggedIn === 200) {
-          navigate('/');
-        }
+        await login(values);
       } catch (e) {
-        console.log(e.message);
         setErrorMessage(e.message);
         setTimeout(() => {
           setErrorMessage('');

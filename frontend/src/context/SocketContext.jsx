@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useAuthContext } from './AuthContext';
+// import { useAuthContext } from './AuthContext';
 import io from 'socket.io-client';
+import { useSelector } from 'react-redux';
 
 export const SocketContext = createContext();
 
@@ -12,7 +13,8 @@ export const useSocketContext = () => {
 export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
-  const { authUser } = useAuthContext();
+  // const { authUser } = useAuthContext();
+  const authUser = useSelector((state) => state.conversationUsers.loggedInUser);
   useEffect(() => {
     if (authUser) {
       const socket = io('https://chat-app-0tol.onrender.com', {

@@ -1,6 +1,6 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import axios from 'axios';
-import { useAuthContext } from '../context/AuthContext';
+// import { useAuthContext } from '../context/AuthContext';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import useSignup from './useSignup';
 import { useDispatch } from 'react-redux';

@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { useConversation } from '../zustant/useConversation';
+// import { useConversation } from '../zustant/useConversation';
 import axios from 'axios';
-import { renderHook, waitFor } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import useGetMessages from './useGetMessages';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMessages, setSelectedConversation } from '../store/ConversationSlice';
+import { setMessages } from '../store/ConversationSlice';
 import { act } from 'react';
 
 vi.mock('axios', async (importOriginal) => {

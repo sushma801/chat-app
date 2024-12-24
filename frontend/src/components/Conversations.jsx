@@ -1,8 +1,5 @@
-import React from 'react';
 import Conversation from './Conversation';
 import useGetConversations from '../Hooks/useGetConversations';
-import { useDispatch } from 'react-redux';
-import { setSelectedConversation } from '../store/ConversationSlice';
 
 const Conversations = () => {
   const { loading, conversations } = useGetConversations();

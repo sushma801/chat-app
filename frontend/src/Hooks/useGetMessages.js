@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useConversation } from '../zustant/useConversation';
+// import { useConversation } from '../zustant/useConversation';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMessages } from '../store/ConversationSlice';
@@ -33,7 +33,7 @@ const useGetMessages = () => {
     //     const headers = { 'Content-Type': 'application/json' };
     //     const res = await axios.post(`/api/messages/${selectedConversation._id}`, {}, { headers });
     //     if (res.data.Error) throw new Error(res.data.Error);
-    //     setMessages(res.data);
+    //     dispatch(setMessages(res.data));
     //   } catch (e) {
     //     throw new Error(e.messages);
     //   } finally {
