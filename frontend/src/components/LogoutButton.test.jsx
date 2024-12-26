@@ -1,10 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
 import LogoutButton from './LogoutButton';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { AuthContextProvider } from '../context/AuthContext';
+import { fireEvent, render } from '@testing-library/react';
+
 import { Provider } from 'react-redux';
 import Store from '../store/Store';
-import { useNavigate } from 'react-router-dom';
 
 // Mock dependencies
 

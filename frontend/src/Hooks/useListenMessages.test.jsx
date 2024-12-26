@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
 import { useSocketContext } from '../context/SocketContext';
-import { useConversation } from '../zustant/useConversation';
 import useListenMessages from './useListenMessages';
-import notificationSound from '../assets/sound/I_phone.mp3';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -56,6 +54,7 @@ describe('useListenMessages', () => {
   it('should add a new message and play sound when "newMessage" event is emitted', () => {
     const newMessage = { text: 'Hello!', sender: 'User1', shouldShake: false };
     useSelector.mockReturnValue([]);
+    // eslint-disable-next-line no-unused-vars
     const { result } = renderHook(() => useListenMessages());
 
     act(() => {

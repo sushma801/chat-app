@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import Signup from './Signup';
-import { AuthContextProvider } from '../context/AuthContext';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Store from '../store/Store';

@@ -1,7 +1,7 @@
-import { renderHook, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { renderHook } from '@testing-library/react';
+import { beforeEach, describe, it, vi } from 'vitest';
 import useSendMessage from './useSendMessage';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { act } from 'react';
 import axios from 'axios';
 

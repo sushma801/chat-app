@@ -1,6 +1,6 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Login from './Login';
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { AuthContextProvider } from '../context/AuthContext';
 import { MemoryRouter } from 'react-router-dom';
 import axios from 'axios';
@@ -37,8 +37,8 @@ describe('Login page', () => {
   });
 
   it('renders the login component', async () => {
-    const href = '/';
-    const mockLogin = vi.fn().mockResolvedValue({});
+    // const href = '/';
+    // const mockLogin = vi.fn().mockResolvedValue({});
 
     const { container } = render(
       <MemoryRouter>
@@ -62,8 +62,6 @@ describe('Login page', () => {
   it('should call login API with correct values and navigate on success', async () => {
     const mockLoginResponse = { data: { userName: 'testUser', token: 'abc123' } };
     axios.post.mockResolvedValue(mockLoginResponse);
-    const mockSetAuthUser = vi.fn();
-    const mockLogin = vi.fn().mockResolvedValue({});
     // useLogin.mockReturnValue({ login: mockLogin, loading: false });
     const { container } = render(
       <MemoryRouter>
@@ -100,7 +98,6 @@ describe('Login page', () => {
   });
 
   it('check the sign up Page is render or not', async () => {
-    const href = '/';
     const { container } = render(
       <MemoryRouter>
         <AuthContextProvider>

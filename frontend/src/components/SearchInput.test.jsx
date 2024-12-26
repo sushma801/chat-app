@@ -1,8 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import SearchInput from './SearchInput';
-import { useSelector, useDispatch } from 'react-redux';
-import useGetConversations from '../Hooks/useGetConversations';
+import { useSelector } from 'react-redux';
 
 const mockUsers = [
   {

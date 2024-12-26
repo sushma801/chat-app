@@ -1,9 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import MessageContainer from './MessageContainer';
 import { useSelector } from 'react-redux';
 import useGetMessages from '../Hooks/useGetMessages';
-import useSendMessage from '../Hooks/useSendMessage';
 
 const mockLoggedInUser = {
   _id: '6738bae5a089ba9174a89e17',

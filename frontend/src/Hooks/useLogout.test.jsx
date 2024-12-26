@@ -5,7 +5,6 @@ import axios from 'axios';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import useLogout from './useLogout';
 import { useDispatch } from 'react-redux';
-import { setAuthUser } from '../store/UserSlice';
 
 // Mock dependencies
 
