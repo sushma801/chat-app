@@ -176,7 +176,7 @@ describe('Message Container', () => {
     expect(mockSkeleton[0]).toHaveClass('skeleton');
   });
 
-  it.skip('render message Input component', () => {
+  it('render message Input component', () => {
     useSelector.mockImplementation((callBack) =>
       callBack({
         conversationUsers: { loggedInUser: mockLoggedInUser },
