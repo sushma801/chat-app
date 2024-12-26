@@ -12,6 +12,7 @@ const useSendMessage = () => {
   // const { messages, setMessages, selectedConversation } = useConversation();
   const sendMessage = async (message) => {
     setLoading(true);
+    console.log({ message }, { selectedConversation: selectedConversation._id });
     try {
       const headers = { 'Content-Type': 'application/json' };
       const res = await axios.post(
@@ -19,12 +20,14 @@ const useSendMessage = () => {
         JSON.stringify({ message }),
         { headers },
       );
-      console.log(res);
+      console.log({ res });
       if (res.data.Error) throw new Error(res.data.Error);
       dispatch(setMessages([...messages, res.data]));
       // setMessages([...messages, res.data]);
     } catch (e) {
-      throw new Error(e.message);
+      // throw new Error(e.message);
+      console.log(e);
+      console.log(e.message);
     } finally {
       setLoading(false);
     }

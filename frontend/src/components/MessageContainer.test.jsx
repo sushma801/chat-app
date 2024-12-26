@@ -187,9 +187,9 @@ describe('Message Container', () => {
       messages: [],
       loading: false,
     });
-    useSendMessage.mockReturnValue({
-      sendMessage: vi.fn(),
-    });
+    // useSendMessage.mockReturnValue({
+    //   sendMessage: vi.fn(),
+    // });
     const { container } = render(<MessageContainer />);
     expect(container).toBeTruthy();
     const startNewMessage = container.querySelector('div p');
